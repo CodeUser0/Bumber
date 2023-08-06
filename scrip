@@ -1,0 +1,93 @@
+import time
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.common.exceptions import StaleElementReferenceException
+
+
+class Browser:
+    browser = None
+    service = None
+
+    # Initialize the webdriver with the path to chromedriver.exe
+    def __init__(self, driver: str):
+        self.service = Service(driver)
+        self.browser = webdriver.Chrome(service=self.service)
+
+    def open_page(self, url: str):
+        self.browser.get(url)
+
+    def close_browser(self):
+        self.browser.quit()
+
+    def add_input(self, by: By, value: str, text: str):
+        field = self.browser.find_element(by=by, value=value)
+        field.send_keys(text)
+        time.sleep(0.5)
+
+    def click_button(self, by: By, value: str):
+        button = self.browser.find_element(by=by, value=value)
+        try:
+            actions = ActionChains(self.browser)
+            actions.click(button).perform()
+        except StaleElementReferenceException:
+            # If the element reference is stale, re-locate the element and click again
+            button = self.browser.find_element(by=by, value=value)
+            actions = ActionChains(self.browser)
+            actions.click(button).perform()
+        time.sleep(0.1)
+
+    def scroll_to_element(self, by: By, value: str):
+        element = self.browser.find_element(by=by, value=value)
+        actions = ActionChains(self.browser)
+        actions.move_to_element(element).perform()
+        time.sleep(0.5)
+
+    def login_rlgarage(self, username: str, password: str):
+        self.click_button(by=By.ID, value="acceptPrivacyPolicy")
+        self.add_input(by=By.NAME, value="email", text=username)
+        self.add_input(by=By.NAME, value="password", text=password)
+        self.click_button(by=By.XPATH, value="//input[@type='submit']")
+        time.sleep(100)
+        self.click_button(by=By.CSS_SELECTOR, value="button.fc-button.fc-cta-consent.fc-primary-button")
+        time.sleep(0.5)
+        self.click_button(by=By.ID, value="declineNotifications")
+
+
+if __name__ == '__main__':
+    browser = Browser('drivers/chromedriver.exe')
+    browser.browser.maximize_window()  # Maximize the browser window
+    browser.open_page('https://rocket-league.com/login')
+    browser.login_rlgarage('gdriver.1991@gmail.com', 'Carrot!0')
+    browser.open_page("https://rocket-league.com/trades/xlr8t")
+
+    # Scroll down by 1000 pixels (adjust the value as needed)
+    browser.browser.execute_script("window.scrollTo(0, 1950)")
+
+    try:
+        while True:
+            button_xpaths = [
+                "//button[@data-alias='VO9Bev7' and contains(@class, 'rlg-trade__action') and contains(@class, '--bump')]"
+            ]
+
+            for xpath in button_xpaths:
+                try:
+                    time.sleep(1)
+                    #browser.scroll_to_element(by=By.XPATH, value=xpath)
+                    browser.click_button(by=By.XPATH, value=xpath)
+                    browser.click_button(by=By.XPATH, value="//i[@class='fa fa-times']")
+                    print("Bumped")
+                except Exception as e:
+                    print(f"An error occurred while clicking the button: {e}")
+                    continue
+
+            # Wait for the specified interval (910 seconds)
+            time.sleep(910)
+    except KeyboardInterrupt:
+        pass
+
+    # Wait for user input before closing the browser
+    input("Press Enter to close the browser...")
+    browser.close_browser()
