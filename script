@@ -50,7 +50,7 @@ class Browser:
         self.add_input(by=By.NAME, value="email", text=username)
         self.add_input(by=By.NAME, value="password", text=password)
         self.click_button(by=By.XPATH, value="//input[@type='submit']")
-        time.sleep(100)
+        time.sleep(1.5)
         self.click_button(by=By.CSS_SELECTOR, value="button.css-1litn2c")
         time.sleep(0.5)
         self.click_button(by=By.ID, value="declineNotifications")
@@ -69,7 +69,9 @@ if __name__ == '__main__':
     try:
         while True:
             button_xpaths = [
-                "//button[@data-alias='VO9Bev7' and contains(@class, 'rlg-trade__action') and contains(@class, '--bump')]"
+                "//button[@data-alias='N0OYAbK' and contains(@class, 'rlg-trade__action') and contains(@class, '--bump')]"
+                "//button[@data-alias='aXP3k78' and contains(@class, 'rlg-trade__action') and contains(@class, '--bump')]"
+                "//button[@data-alias='x3KXyRj' and contains(@class, 'rlg-trade__action') and contains(@class, '--bump')]"
             ]
 
             for xpath in button_xpaths:
