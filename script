@@ -51,7 +51,7 @@ class Browser:
         self.add_input(by=By.NAME, value="password", text=password)
         self.click_button(by=By.XPATH, value="//input[@type='submit']")
         time.sleep(100)
-        self.click_button(by=By.CSS_SELECTOR, value="button.fc-button.fc-cta-consent.fc-primary-button")
+        self.click_button(by=By.CSS_SELECTOR, value="button.css-1litn2c")
         time.sleep(0.5)
         self.click_button(by=By.ID, value="declineNotifications")
 
