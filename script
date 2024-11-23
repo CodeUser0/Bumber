@@ -60,7 +60,7 @@ if __name__ == '__main__':
     browser = Browser('drivers/chromedriver.exe')
     browser.browser.maximize_window()  # Maximize the browser window
     browser.open_page('https://rocket-league.com/login')
-    browser.login_rlgarage('gdriver.1991@gmail.com', 'Carrot!0')
+    browser.login_rlgarage('EMAIL GOES HERE', 'PASSWORD GOES HERE')
     browser.open_page("https://rocket-league.com/trades/xlr8t")
 
     # Scroll down by 1000 pixels (adjust the value as needed)
