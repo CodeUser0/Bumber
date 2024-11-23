@@ -1,6 +1,10 @@
 # Bumber
 RL garage bumper
 
+Developed a Python script using Selenium to automate repetitive web interactions. The script effectively clicked specific buttons on a webpage, demonstrating proficiency in web automation and exception handling using try-except blocks.
+
+Rocket league is a game i enjoy playing on my free time and i enjoy trading and developed a program to help my trading.
+
 **CONTEXT**
 
 Rocket League trading is essentially a virtual economy within the game Rocket League, a popular car soccer game. Players can acquire in-game items like car bodies, wheels, and decals, which can be customized to personalize their vehicles. This is completely within the game's TOS
