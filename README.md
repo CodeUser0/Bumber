@@ -13,4 +13,4 @@ The site https://rocket-league.com/ used to be one of the popular sites player u
 
 **SUMMARY**
 
-What the code does is go on the trading page of the site and bump trades every 15 minutes for other players to see instead of the user having to manually bump the trades.
+What the code does is it goes on the trading page of the site and bumps the user's trades every 15 minutes for other players to see instead of the user having to manually bump the trades.
